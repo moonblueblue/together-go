@@ -2,11 +2,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
-    const { email, password } = req.body;
+    const { phoneNumber, password } = req.body;
+
+    console.log(phoneNumber, password);
 
     // 간단한 인증 예제
-    if (email === "test@example.com" && password === "1234") {
-      res.status(200).json({ message: "로그인 성공", user: { email } });
+    if (phoneNumber === "01012345678" && password === "1234") {
+      res.status(200).json({ message: "로그인 성공", user: { phoneNumber } });
     } else {
       res
         .status(401)

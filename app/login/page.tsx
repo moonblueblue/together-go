@@ -1,9 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -12,7 +13,7 @@ export default function Login() {
     setError("");
 
     // 로그인 로직 (예: API 호출)
-    if (!email || !password) {
+    if (!phoneNumber || !password) {
       setError("이메일과 비밀번호를 입력해주세요.");
       return;
     }
@@ -23,7 +24,7 @@ export default function Login() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ phoneNumber, password }),
       });
 
       if (!response.ok) {
@@ -43,24 +44,30 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md p-8 bg-white shadow-md rounded-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center">로그인</h1>
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+        {/* 로고 */}
+        <div className="mb-8 flex flex-col items-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-md bg-gradient-to-r from-blue-400 to-purple-500">
+            <span className="text-2xl font-bold text-white">Logo</span>
+          </div>
+          <h1 className="mt-4 text-xl font-medium text-gray-500">모이자고</h1>
+        </div>
         {error && <p className="mb-4 text-red-500">{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="phoneNumber"
               className="block text-sm font-medium text-gray-700"
             >
-              이메일
+              휴대폰번호
             </label>
             <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="example@domain.com"
+              type="number"
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              className="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="01012345678"
               required
             />
           </div>
@@ -76,23 +83,23 @@ export default function Login() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="비밀번호"
               required
             />
           </div>
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-md bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             로그인
           </button>
         </form>
-        <p className="mt-4 text-sm text-center text-gray-600">
+        <p className="mt-4 text-center text-sm text-gray-600">
           계정이 없으신가요?{" "}
-          <a href="/register" className="text-blue-500 hover:underline">
+          <Link href="/join" className="text-blue-700 hover:underline">
             회원가입
-          </a>
+          </Link>
         </p>
       </div>
     </div>

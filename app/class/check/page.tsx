@@ -1,10 +1,10 @@
 /**
  * @description 출석 체크
  */
-export default function Checkout() {
+export default function Check() {
   return (
     <>
-      <h1>Checkout</h1>
+      <h1>Check</h1>
     </>
   );
 }

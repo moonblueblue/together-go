@@ -39,7 +39,7 @@ export default function MemoModal({
           value={memo}
           onChange={(e) => setMemo(e.target.value)}
           placeholder="내용을 작성해 주세요."
-          className="mb-4 h-36 w-full resize-none rounded border border-gray-300 p-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="mb-4 h-48 w-full resize-none rounded border border-gray-300 p-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         {/* 심방 요청 체크박스 */}

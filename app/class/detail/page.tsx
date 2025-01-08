@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ArrowLeftIcon } from "@heroicons/react/24/solid"; // Heroicons 사용
 
 export default function StudentProfile() {
+  // state
   const [student] = useState({
     fullName: "000",
     school: "00 고등학교",
@@ -13,15 +16,17 @@ export default function StudentProfile() {
     profilePicture: "https://via.placeholder.com/150", // 프로필 사진 URL
   });
 
+  // router
+  const router = useRouter();
+
   return (
     <div className="flex min-h-screen flex-col items-center bg-gray-50 px-4 py-6">
       {/* 상단 네비게이션 */}
       <div className="flex w-full max-w-sm items-center justify-between">
-        <div className="h-6 w-6">
-          <div className="mb-1 h-1 w-5 bg-gray-600"></div>
-          <div className="mb-1 h-1 w-5 bg-gray-600"></div>
-          <div className="mb-1 h-1 w-5 bg-gray-600"></div>
-        </div>
+        {/* 나가기 버튼 */}
+        <button onClick={() => router.back()} className="flex items-center">
+          <ArrowLeftIcon className="h-6 w-6 text-gray-600" />
+        </button>
         <h1 className="text-sm font-semibold text-blue-600">PROFILE</h1>
         <div className="h-6 w-6"></div>
       </div>

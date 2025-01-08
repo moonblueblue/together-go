@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ClassPage() {
+  // state
   const [students, setStudents] = useState([
     {
       id: 1,
@@ -41,6 +43,14 @@ export default function ClassPage() {
     },
   ]);
 
+  // router
+  const router = useRouter();
+
+  // event handlers
+  const handleNavigation = () => {
+    router.push("/class/detail");
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-2 py-3">
       <div className="mx-auto max-w-4xl rounded-md border border-gray-300 bg-white shadow-sm">
@@ -59,7 +69,10 @@ export default function ClassPage() {
             className="flex items-center justify-between border-b border-gray-300 px-4 py-2.5 last:border-0"
           >
             {/* 프로필 사진 */}
-            <div className="flex items-center">
+            <div
+              className="flex cursor-pointer items-center"
+              onClick={handleNavigation}
+            >
               <div className="flex h-14 w-14 items-center justify-center rounded-lg border border-gray-400 bg-gray-100">
                 <span className="text-sm text-gray-500">사진</span>
               </div>

@@ -5,6 +5,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
+# 로컬 PC에서 프로젝트 실행
 pnpm dev
 ```
 

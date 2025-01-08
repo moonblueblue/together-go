@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import CheckModal from "@/components/CheckModal";
+
 export default function ClassPage() {
   // state
   const [students, setStudents] = useState([
@@ -43,6 +45,8 @@ export default function ClassPage() {
     },
   ]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // router
   const router = useRouter();
 
@@ -50,6 +54,18 @@ export default function ClassPage() {
   const handleNavigation = () => {
     router.push("/class/detail");
   };
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  const handleSave = (updatedStudents: any) => {
+    console.log("Updated Students:", updatedStudents);
+  };
+
+  // variables
+  const student_list: any = [
+    { id: 1, name: "소재혁", isPresent: true },
+    { id: 2, name: "유호승", isPresent: true },
+    { id: 3, name: "신하람", isPresent: false },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50 px-2 py-3">
@@ -57,9 +73,20 @@ export default function ClassPage() {
         {/* 상단 헤더 */}
         <div className="flex items-center justify-between border-b border-gray-300 px-4 py-2">
           <h1 className="text-base font-bold">2학년 3반 / 문호성</h1>
-          <button className="rounded bg-blue-500 px-6 py-3 text-sm text-white hover:bg-blue-600">
+          <button
+            className="rounded bg-blue-500 px-6 py-3 text-sm text-white hover:bg-blue-600"
+            onClick={handleOpenModal}
+          >
             출석체크
           </button>
+
+          {/* 모달 */}
+          <CheckModal
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            students={student_list}
+            onSave={handleSave}
+          />
         </div>
 
         {/* 학생 목록 */}

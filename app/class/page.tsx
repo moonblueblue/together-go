@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import CheckModal from "@/components/CheckModal";
+import MemoModal from "@/components/MemoModal";
 
 export default function ClassPage() {
   // state
@@ -45,7 +46,8 @@ export default function ClassPage() {
     },
   ]);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCheckModalOpen, setIsCheckModalOpen] = useState(false);
+  const [isMemoModalOpen, setIsMemoModalOpen] = useState(false);
 
   // router
   const router = useRouter();
@@ -54,10 +56,18 @@ export default function ClassPage() {
   const handleNavigation = () => {
     router.push("/class/detail");
   };
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
-  const handleSave = (updatedStudents: any) => {
+  const handleOpenCheckModal = () => setIsCheckModalOpen(true);
+  const handleCloseCheckModal = () => setIsCheckModalOpen(false);
+  const handleOpenMemoModal = () => setIsMemoModalOpen(true);
+  const handleCloseMemoModal = () => setIsMemoModalOpen(false);
+
+  const handleCheckSave = (updatedStudents: any) => {
     console.log("Updated Students:", updatedStudents);
+  };
+
+  const handleMemoSave = (memo: string, isVisitRequested: boolean) => {
+    console.log("Memo:", memo);
+    console.log("Visit Requested:", isVisitRequested);
   };
 
   // variables
@@ -75,17 +85,17 @@ export default function ClassPage() {
           <h1 className="text-base font-bold">2학년 3반 / 문호성</h1>
           <button
             className="rounded bg-blue-500 px-6 py-3 text-sm text-white hover:bg-blue-600"
-            onClick={handleOpenModal}
+            onClick={handleOpenCheckModal}
           >
             출석체크
           </button>
 
           {/* 모달 */}
           <CheckModal
-            isOpen={isModalOpen}
-            onClose={handleCloseModal}
+            isOpen={isCheckModalOpen}
+            onClose={handleCloseCheckModal}
             students={student_list}
-            onSave={handleSave}
+            onSave={handleCheckSave}
           />
         </div>
 
@@ -121,9 +131,19 @@ export default function ClassPage() {
             </div>
 
             {/* 메모 버튼 */}
-            <button className="rounded bg-gray-300 px-5 py-3 text-sm font-bold hover:bg-gray-400">
+            <button
+              className="rounded bg-gray-300 px-5 py-3 text-sm font-bold hover:bg-gray-400"
+              onClick={handleOpenMemoModal}
+            >
               메모
             </button>
+
+            <MemoModal
+              isOpen={isMemoModalOpen}
+              onClose={() => setIsMemoModalOpen(false)}
+              studentName="신하람"
+              onSave={handleMemoSave}
+            />
           </div>
         ))}
       </div>

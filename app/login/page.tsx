@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
 
@@ -95,6 +95,14 @@ export default function Login() {
             로그인
           </button>
         </form>
+        <p className="mt-4 text-center text-sm text-gray-600">
+          <Link
+            href="/forgot-password"
+            className="text-blue-700 hover:underline"
+          >
+            비밀번호를 잊으셨나요?
+          </Link>
+        </p>
         <p className="mt-4 text-center text-sm text-gray-600">
           계정이 없으신가요?{" "}
           <Link href="/join" className="text-blue-700 hover:underline">

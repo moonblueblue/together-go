@@ -16,6 +16,8 @@ project-root/
 ├── app/                # Next.js의 라우팅 및 페이지 관리
 │   ├── layout.tsx      # 공통 레이아웃
 │   ├── page.tsx        # 홈 페이지
+│   ├── admin/          # /admin 경로 관련 파일
+│       ├── page.tsx    # /admin 페이지
 │   └── class/          # /class 경로 관련 파일
 │       ├── page.tsx    # /class 페이지
 │       └── detail/     # /class/detail 경로
@@ -26,7 +28,7 @@ project-root/
 │   └── Header.tsx      # 헤더 컴포넌트
 │
 ├── pages/              # 백엔드 파일
-├── public/             # 정적 파일
+├── public/             # 정적 파일 (이미지)
 ├── styles/             # 전역 스타일
-└── package.json        # 패키지 파일
+└── package.json        # 패키지 파일 (라이브러리)
 ```
